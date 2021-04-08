@@ -1,14 +1,16 @@
 # Stigmer_visualization
 
-App to visualize the Stigmer 15x15 games.
+Stigmer_visualization is a python module to visualize the Stigmer experiment (15x15 games).
 
-## Run
+## Usage
 
 ```python
-from stigmer_visualization_app import app
+import stigmer_visualization
 
-if __name__ == "__main__":
-    path_data = "/Path/to/Data/Stigmer_15x15/"
-
-    app(path_data)
+path_to_data = "/Path/to/Data/Stigmer_15x15/"
+stigmer_visualization.app(path_to_data)
 ```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

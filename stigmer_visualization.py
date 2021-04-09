@@ -182,24 +182,24 @@ class Bottom(ttk.Frame):
         )
         self.rbt_visits.grid(row=1, column=2, columnspan=2, sticky="w")
 
-        self.lbl_round = ttk.Label(master=self, text=f"Round:  ")
+        frm_round = ttk.Frame(master=self)
+        ttk.Label(master=frm_round, text="Round: ").grid(row=0, column=0, sticky="e")
+        self.lbl_round = ttk.Label(master=frm_round, width=2)
+        self.lbl_round.grid(row=0, column=1, sticky="w")
 
-        self.frm_info = ttk.Frame(master=self)
-
-        ttk.Label(master=self.frm_info, text=f"Session: ").grid(row=0, column=0, sticky="e")
-        ttk.Label(master=self.frm_info, text=f"Game: ").grid(row=1, column=0, sticky="e")
-        ttk.Label(master=self.frm_info, text=f"Group: ").grid(row=2, column=0, sticky="e")
-        ttk.Label(master=self.frm_info, text=f"Rule: ").grid(row=3, column=0, sticky="e")
-        ttk.Label(master=self.frm_info, text=f"Map: ").grid(row=4, column=0, sticky="e")
-        ttk.Label(master=self.frm_info, text=f"Number: ").grid(row=5, column=0, sticky="e")
-
-        self.lbl_session = ttk.Label(master=self.frm_info, width=2)
-        self.lbl_game = ttk.Label(master=self.frm_info, width=2)
-        self.lbl_group = ttk.Label(master=self.frm_info, width=2)
-        self.lbl_rule = ttk.Label(master=self.frm_info, width=2)
-        self.lbl_map = ttk.Label(master=self.frm_info, width=2)
-        self.lbl_number = ttk.Label(master=self.frm_info, width=2)
-
+        frm_info = ttk.Frame(master=self)
+        ttk.Label(master=frm_info, text=f"Session: ").grid(row=0, column=0, sticky="e")
+        ttk.Label(master=frm_info, text=f"Game: ").grid(row=1, column=0, sticky="e")
+        ttk.Label(master=frm_info, text=f"Group: ").grid(row=2, column=0, sticky="e")
+        ttk.Label(master=frm_info, text=f"Rule: ").grid(row=3, column=0, sticky="e")
+        ttk.Label(master=frm_info, text=f"Map: ").grid(row=4, column=0, sticky="e")
+        ttk.Label(master=frm_info, text=f"Number: ").grid(row=5, column=0, sticky="e")
+        self.lbl_session = ttk.Label(master=frm_info, width=2)
+        self.lbl_game = ttk.Label(master=frm_info, width=2)
+        self.lbl_group = ttk.Label(master=frm_info, width=2)
+        self.lbl_rule = ttk.Label(master=frm_info, width=2)
+        self.lbl_map = ttk.Label(master=frm_info, width=2)
+        self.lbl_number = ttk.Label(master=frm_info, width=2)
         self.lbl_session.grid(row=0, column=1, sticky="w")
         self.lbl_game.grid(row=1, column=1, sticky="w")
         self.lbl_group.grid(row=2, column=1, sticky="w")
@@ -208,8 +208,8 @@ class Bottom(ttk.Frame):
         self.lbl_number.grid(row=5, column=1, sticky="w")
 
         frm_buttons.grid(row=0, column=0, padx=10, pady=5, sticky="nw")
-        self.lbl_round.grid(row=0, column=1, padx=10, pady=5, sticky="nsew")
-        self.frm_info.grid(row=0, column=2, padx=10, pady=5, sticky="e")
+        frm_round.grid(row=0, column=1, padx=10, pady=5, sticky="nsew")
+        frm_info.grid(row=0, column=2, padx=10, pady=5, sticky="e")
 
         self.columnconfigure((0, 1, 2), weight=1)
 
@@ -222,7 +222,7 @@ class Bottom(ttk.Frame):
         self.lbl_number["text"] = self.parent.in_data["mapNumber"]
 
     def update_lbl_round_text(self):
-        self.lbl_round["text"] = f"Round: {self.parent.round.get()}"
+        self.lbl_round["text"] = self.parent.round.get()
 
     def activate_frm_buttons(self):
         self.btn_previous["state"] = "active"

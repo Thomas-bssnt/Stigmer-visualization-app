@@ -2,8 +2,6 @@
 
 ## Important changes
 
-- [ ] Change `lbl_info` to a “table” 
-
 ## Future options
 - [ ] Show/hide values on the map
 - [ ] Change play speed

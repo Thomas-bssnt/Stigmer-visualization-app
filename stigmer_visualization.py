@@ -184,32 +184,42 @@ class Bottom(ttk.Frame):
 
         self.lbl_round = ttk.Label(master=self, text=f"Round:  ")
 
-        self.lbl_info = ttk.Label(
-            master=self,
-            text="""Session:  
-                 Game:  
-                 Group:  
-                 Rule:  
-                 Map:  
-                 Number:  """,
-            justify=tk.RIGHT,
-        )
+        self.frm_info = ttk.Frame(master=self)
+
+        ttk.Label(master=self.frm_info, text=f"Session: ").grid(row=0, column=0, sticky="e")
+        ttk.Label(master=self.frm_info, text=f"Game: ").grid(row=1, column=0, sticky="e")
+        ttk.Label(master=self.frm_info, text=f"Group: ").grid(row=2, column=0, sticky="e")
+        ttk.Label(master=self.frm_info, text=f"Rule: ").grid(row=3, column=0, sticky="e")
+        ttk.Label(master=self.frm_info, text=f"Map: ").grid(row=4, column=0, sticky="e")
+        ttk.Label(master=self.frm_info, text=f"Number: ").grid(row=5, column=0, sticky="e")
+
+        self.lbl_session = ttk.Label(master=self.frm_info, width=2)
+        self.lbl_game = ttk.Label(master=self.frm_info, width=2)
+        self.lbl_group = ttk.Label(master=self.frm_info, width=2)
+        self.lbl_rule = ttk.Label(master=self.frm_info, width=2)
+        self.lbl_map = ttk.Label(master=self.frm_info, width=2)
+        self.lbl_number = ttk.Label(master=self.frm_info, width=2)
+
+        self.lbl_session.grid(row=0, column=1, sticky="w")
+        self.lbl_game.grid(row=1, column=1, sticky="w")
+        self.lbl_group.grid(row=2, column=1, sticky="w")
+        self.lbl_rule.grid(row=3, column=1, sticky="w")
+        self.lbl_map.grid(row=4, column=1, sticky="w")
+        self.lbl_number.grid(row=5, column=1, sticky="w")
 
         frm_buttons.grid(row=0, column=0, padx=10, pady=5, sticky="nw")
         self.lbl_round.grid(row=0, column=1, padx=10, pady=5, sticky="nsew")
-        self.lbl_info.grid(row=0, column=2, padx=10, pady=5, sticky="e")
+        self.frm_info.grid(row=0, column=2, padx=10, pady=5, sticky="e")
 
         self.columnconfigure((0, 1, 2), weight=1)
 
-    def update_lbl_info_text(self):
-        self.lbl_info[
-            "text"
-        ] = f"""Session: {self.parent.in_data['sessionNumber']}
-        Game: {self.parent.in_data['gameNumber']}
-        Group: {self.parent.in_data['groupId']}
-        Rule: {self.parent.in_data['ruleNumber']}
-        Map: {self.parent.in_data['mapType']}
-        Number: {self.parent.in_data['mapNumber']}"""
+    def update_frm_info_text(self):
+        self.lbl_session["text"] = self.parent.in_data["sessionNumber"]
+        self.lbl_game["text"] = self.parent.in_data["gameNumber"]
+        self.lbl_group["text"] = self.parent.in_data["groupId"]
+        self.lbl_rule["text"] = self.parent.in_data["ruleNumber"]
+        self.lbl_map["text"] = self.parent.in_data["mapType"]
+        self.lbl_number["text"] = self.parent.in_data["mapNumber"]
 
     def update_lbl_round_text(self):
         self.lbl_round["text"] = f"Round: {self.parent.round.get()}"
@@ -305,7 +315,7 @@ class MainApplication(ttk.Frame):
                 self.proportion_visits[round_number] /= total_cases_played_cum[round_number]
                 self.proportion_stars[round_number] /= total_stars_played_cum[round_number]
 
-            self.bottom.update_lbl_info_text()
+            self.bottom.update_frm_info_text()
             self.restart_round()
             self.map.put_values_map()
 

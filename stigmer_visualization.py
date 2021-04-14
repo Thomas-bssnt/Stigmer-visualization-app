@@ -188,12 +188,12 @@ class Bottom(ttk.Frame):
         self.lbl_round.grid(row=0, column=1, sticky="w")
 
         frm_info = ttk.Frame(master=self)
-        ttk.Label(master=frm_info, text=f"Session: ").grid(row=0, column=0, sticky="e")
-        ttk.Label(master=frm_info, text=f"Game: ").grid(row=1, column=0, sticky="e")
-        ttk.Label(master=frm_info, text=f"Group: ").grid(row=2, column=0, sticky="e")
-        ttk.Label(master=frm_info, text=f"Rule: ").grid(row=3, column=0, sticky="e")
-        ttk.Label(master=frm_info, text=f"Map: ").grid(row=4, column=0, sticky="e")
-        ttk.Label(master=frm_info, text=f"Number: ").grid(row=5, column=0, sticky="e")
+        ttk.Label(master=frm_info, text="Session: ").grid(row=0, column=0, sticky="e")
+        ttk.Label(master=frm_info, text="Game: ").grid(row=1, column=0, sticky="e")
+        ttk.Label(master=frm_info, text="Group: ").grid(row=2, column=0, sticky="e")
+        ttk.Label(master=frm_info, text="Rule: ").grid(row=3, column=0, sticky="e")
+        ttk.Label(master=frm_info, text="Map: ").grid(row=4, column=0, sticky="e")
+        ttk.Label(master=frm_info, text="Number: ").grid(row=5, column=0, sticky="e")
         self.lbl_session = ttk.Label(master=frm_info, width=2)
         self.lbl_game = ttk.Label(master=frm_info, width=2)
         self.lbl_group = ttk.Label(master=frm_info, width=2)
@@ -298,7 +298,7 @@ class MainApplication(ttk.Frame):
                 (self.in_data["numberRounds"] + 1, self.in_data["mapSize"], self.in_data["mapSize"]), dtype=float
             )
             total_stars_played = np.zeros(self.in_data["numberRounds"] + 1)
-            for _, round_number, _, mapX, mapY, _, numberStars, _ in out_data:
+            for round_number, _, mapX, mapY, _, numberStars, _ in out_data:
                 cases_played[round_number, mapY, mapX] += 1
                 total_cases_played[round_number] += 1
                 stars_played[round_number, mapY, mapX] += numberStars

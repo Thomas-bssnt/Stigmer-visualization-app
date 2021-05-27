@@ -290,29 +290,29 @@ class MainApplication(ttk.Frame):
             with open(path_out_file, "r") as out_file:
                 out_data = np.genfromtxt(out_file, dtype=None, delimiter=",", skip_header=1, encoding=None)
 
-            cases_played = np.zeros(
+            cells_played = np.zeros(
                 (self.in_data["numberRounds"] + 1, self.in_data["mapSize"], self.in_data["mapSize"]), dtype=float
             )
-            total_cases_played = np.zeros(self.in_data["numberRounds"] + 1)
+            total_cells_played = np.zeros(self.in_data["numberRounds"] + 1)
             stars_played = np.zeros(
                 (self.in_data["numberRounds"] + 1, self.in_data["mapSize"], self.in_data["mapSize"]), dtype=float
             )
             total_stars_played = np.zeros(self.in_data["numberRounds"] + 1)
             for round_number, _, mapX, mapY, _, numberStars, _ in out_data:
-                cases_played[round_number, mapY, mapX] += 1
-                total_cases_played[round_number] += 1
+                cells_played[round_number, mapY, mapX] += 1
+                total_cells_played[round_number] += 1
                 stars_played[round_number, mapY, mapX] += numberStars
                 total_stars_played[round_number] += numberStars
 
-            cases_played_cum = np.cumsum(cases_played, axis=0)
-            total_cases_played_cum = np.cumsum(total_cases_played)
+            cells_played_cum = np.cumsum(cells_played, axis=0)
+            total_cells_played_cum = np.cumsum(total_cells_played)
             stars_played_cum = np.cumsum(stars_played, axis=0)
             total_stars_played_cum = np.cumsum(total_stars_played)
 
-            self.proportion_visits = cases_played_cum
+            self.proportion_visits = cells_played_cum
             self.proportion_stars = stars_played_cum
             for round_number in range(1, self.in_data["numberRounds"] + 1):
-                self.proportion_visits[round_number] /= total_cases_played_cum[round_number]
+                self.proportion_visits[round_number] /= total_cells_played_cum[round_number]
                 self.proportion_stars[round_number] /= total_stars_played_cum[round_number]
 
             self.bottom.update_frm_info_text()
